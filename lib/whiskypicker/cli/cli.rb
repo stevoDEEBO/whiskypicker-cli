@@ -7,7 +7,7 @@ class WhiskyPicker::CLI
   #include base path to append urls of whisky pages
   BASE_PATH="https://www.thewhiskyexchange.com"
   
-  #welcome user to gem, call list search options, pick countries (and regions), display menu and exit!
+  #welcome user to gem, pick a whisky and exit!
   def call
     greet
     pick_whiskies
@@ -23,7 +23,7 @@ class WhiskyPicker::CLI
   #list search options 
   def pick_whiskies
     country_select
-    country_list
+    whisky_list
     menu
   end
   
@@ -60,7 +60,7 @@ class WhiskyPicker::CLI
   end
   
   #display list of whiskies for selected country and prompt user for specific whisky
-  def country_list
+  def whisky_list
     
   end
 
