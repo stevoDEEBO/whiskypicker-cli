@@ -56,8 +56,47 @@ class WhiskyPicker::CLI
         canadian
       when "6"
         other
-      else puts "Didn't quite catch that, please type number of desired country"
+      else puts "Didn't quite catch that, please type number of desired country, type list or exit to leave."
+    end
   end
+
+  #scotch section has an additional drill down by type of Scotch in order to find list of Scotch whiskies
+  #list search options by type of Scotch whiskies here and prompt user for type of Scotch selection
+  def scotch
+    puts "Which type of Scotch would you like to explore?"
+    puts <<-DOC
+    1. Single Malt
+    2. Blended Malt
+    3. Blended
+    4. Grain
+    DOC
+    
+    #prompt user for desired type of scotch whisky selection
+    input = nil
+    while input != "exit"
+      puts "Please enter the number of desired type of scotch or type list, back or exit to leave."
+      input = gets.strip.downcase
+      case input
+      when "1"
+        scotch_single_malt
+      when "2"
+        scotch_blended_malt
+      when "3"
+        scotch_blended
+      when "4"
+        scotch_grain
+      when "list"
+        scotch
+      when "back"
+        countries
+      when "exit"
+        laters
+      else
+        puts "Didn't quite catch that, please enter number of desired type of Scotch, type list or exit to leave."
+      end
+    end
+  end
+
   
   #display list of whiskies for selected country and prompt user for specific whisky
   def whisky_list
