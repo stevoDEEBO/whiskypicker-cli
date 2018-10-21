@@ -23,7 +23,6 @@ class WhiskyPicker::CLI
   #list search options 
   def pick_whiskies
     country_select
-    whisky_list
     menu
   end
   
@@ -102,17 +101,97 @@ class WhiskyPicker::CLI
       end
     end
   end
-
-
   
-  #display list of whiskies for selected country and prompt user for specific whisky
-  def whisky_list
-    
+  #show list of single malt Scotch whiskies
+  def scotch_single_malt
+    puts "Let's explore single malt Scotch whiskies"
+    #call method to list whiskies for this particular type
+    whisky_list('c/40/single-malt-scotch-whisky?filter=true&rfdata=~size.76#productlist-filter')
+  end
+  
+  #show list of blended malt Scotch whiskies
+  def scotch_blended_malt
+    puts "Let's explore blended malt Scotch whiskies"
+    #call method to list whiskies for this particular type
+    whisky_list('c/309/blended-malt-scotch-whisky?filter=true&rfdata=~size.76#productlist-filter')
+  end
+  
+  #show list of blended Scotch whiskies
+  def scotch_blended
+    puts "Let's explore blended Scotch whiskies"
+    #call method to list whiskies for this particular type
+    whisky_list('c/304/blended-scotch-whisky?filter=true&rfdata=~size.76#productlist-filter')
+  end
+  
+  #show list of grain Scotch whiskies
+  def scotch_grain
+    puts "Let's explore grain Scotch whiskies"
+    #call method to list whiskies for this particular type
+    whisky_list('c/310/grain-scotch-whisky?filter=true&rfdata=~size.76#productlist-filter')
+  end
+  
+  #show list of Irish whiskies
+  def irish
+    puts "Let's explore Irish whiskies"
+    #call method to list whiskies for this particular type
+    whisky_list('c/32/irish-whiskey?filter=true&rfdata=~size.76#productlist-filter')
+  end
+  
+  #show list of American whiskies
+  def american
+    puts "Let's explore American whiskies"
+    #call method to list whiskies for this particular type
+    whisky_list('c/33/american-whiskey?filter=true&rfdata=~size.76#productlist-filter')
+  end
+  
+  #show list of Japanese whiskies
+  def japanese
+    puts "Let's explore Japanese whiskies"
+    #call method to list whiskies for this particular type
+    whisky_list('c/35/japanese-whisky?filter=true&rfdata=~size.76#productlist-filter')
+  end
+  
+  #show list of Canadian whiskies
+  def candian
+    puts "Let's explore Canadian whiskies"
+    #call method to list whiskies for this particular type
+    whisky_list('c/34/canadian-whisky?filter=true&rfdata=~size.76#productlist-filter')
+  end
+
+  #show list of whiskies from other countries
+  def other
+    puts "Let's explore whiskies from other countries"
+    #call method to list whiskies for this particular type
+    whisky_list('c/305/rest-of-the-world-whisky?filter=true&rfdata=~size.76#productlist-filter')
+  end
+  
+  #display list of whiskies for selected country by using scraper whisky.rb to do this
+  #by creating array of scraped whiskies and hashes for each individual whisky_list and
+  #use each whisky hash key 'name'
+  def whisky_list(whisky_url)
+    #scrape and create whisky hashes for all selected whiskies using urls
+    @whiskies = WhiskyPicker:Whisky.scrape_index_page(BASE_PATH + whisky_url)
+    #display list of whiskies
+    @whiskies.each_with_index do |whisky, index|
+      puts "#{index+1}. #{whisky.name}"
+    end
   end
 
   #display menu results with details about selected whisky
   def menu
-    
+    input = nil
+    while input != 'exit'
+      puts "Please enter the number of the particular whisky you would like to see."
+      input = gets.strip.downcase
+
+      if input.to_i > 0 && input.to_i <= @whiskies.size
+        whisky = @whiskies[input.to_i-1]
+
+        #have scraper scrape profile page for selected whisky
+        whisky_prof = WhiskyPicker::Whisky.scrape_profile_page(BASE_PATH + whisky.profile_url )
+
+      end
+    end
   end
   
   #exit CLI
