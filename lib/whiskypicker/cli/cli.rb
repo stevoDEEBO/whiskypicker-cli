@@ -11,9 +11,6 @@ class WhiskyPicker::CLI
   def call
     greet
     pick_whiskies
-    country_select
-    country_list
-    menu
     laters
   end
   
@@ -25,12 +22,41 @@ class WhiskyPicker::CLI
   
   #list search options 
   def pick_whiskies
-    
+    country_select
+    country_list
+    menu
   end
   
-  #prompt user for country selection
+  #list countries and prompt user for country selection
   def country_select
+    puts "Which country would you like to explore?"
+    puts <<-DOC
+    1. Scotland
+    2. Irelend
+    3. USA
+    4. Japan
+    5. Canada
+    6. Other
+    DOC
     
+    input = nil
+    while input != "exit"
+      puts "Please enter number of desired country"
+      input = gets.strip.downcase
+      case input
+      when "1"
+        scotch
+      when "2"
+        irish
+      when "3"
+        american
+      when "4"
+        japanese
+      when "5"
+        canadian
+      when "6"
+        other
+      else puts "Didn't quite catch that, please type number of desired country"
   end
   
   #display list of whiskies for selected country and prompt user for specific whisky
