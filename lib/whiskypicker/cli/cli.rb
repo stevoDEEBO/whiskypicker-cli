@@ -11,6 +11,7 @@ class WhiskyPicker::CLI
   def call
     greet
     pick_whiskies
+    country_select
     country_list
     menu
     laters
@@ -28,8 +29,22 @@ class WhiskyPicker::CLI
   end
   
   #prompt user for country selection
-  def country_list
+  def country_select
     
   end
   
+  #display list of whiskies for selected country and prompt user for specific whisky
+  def country_list
+    
+  end
+
+  #display menu results with details about selected whisky
+  def menu
+    
+  end
   
+  #exit CLI
+  def laters
+    puts "Laters! Thanks for stopping by."
+    exit
+  end
