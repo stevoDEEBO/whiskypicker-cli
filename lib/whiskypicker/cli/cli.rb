@@ -56,7 +56,13 @@ class WhiskyPicker::CLI
         canadian
       when "6"
         other
-      else puts "Didn't quite catch that, please type number of desired country, type list or exit to leave."
+      when "list"
+        country_select
+      when "exit"
+        laters
+      else 
+        puts "Didn't quite catch that, please type number of desired country, type list or exit to leave."
+      end
     end
   end
 
@@ -88,7 +94,7 @@ class WhiskyPicker::CLI
       when "list"
         scotch
       when "back"
-        countries
+        country_select
       when "exit"
         laters
       else
@@ -96,6 +102,7 @@ class WhiskyPicker::CLI
       end
     end
   end
+
 
   
   #display list of whiskies for selected country and prompt user for specific whisky
