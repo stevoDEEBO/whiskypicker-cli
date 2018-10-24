@@ -170,7 +170,7 @@ class WhiskyPicker::CLI
   #use each whisky hash key 'name'
   def whisky_list(whisky_url)
     #scrape and create whisky hashes for all selected whiskies using urls
-    @whiskies = WhiskyPicker:Whisky.scrape_index_page(BASE_PATH + whisky_url)
+    @whiskies = WhiskyPicker:Whiskyscraper.scrape_index_page(BASE_PATH + whisky_url)
     #display list of whiskies
     @whiskies.each_with_index do |whisky, index|
       puts "#{index+1}. #{whisky.name}"
@@ -188,7 +188,7 @@ class WhiskyPicker::CLI
         whisky = @whiskies[input.to_i-1]
 
         #have scraper scrape profile page for selected whisky
-        whisky_prof = WhiskyPicker::Whisky.scrape_profile_page(BASE_PATH + whisky.profile_url )
+        whisky_prof = WhiskyPicker::Whiskyscraper.scrape_profile_page(BASE_PATH + whisky.profile_url)
 
         #display selected whisky profile info
         puts "Name: " + "#{whisky_prof.name}".upcase
