@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "whiskypicker/cli/version"
+require "whiskypicker/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "whiskypicker-cli"
-  spec.version       = Whiskypicker::Cli::VERSION
+  spec.version       = Whiskypicker::VERSION
   spec.authors       = ["'Stephen Telesmanic'"]
   spec.email         = ["'steve.telesmanic@gmail.com'"]
 
@@ -34,4 +34,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency 'pry', '~> 0'
+
+  spec.add_dependency 'nokogiri', '~> 1.6', '>= 1.6.8'
 end
