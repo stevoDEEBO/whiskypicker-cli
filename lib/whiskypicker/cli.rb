@@ -11,6 +11,7 @@ class WhiskyPicker::CLI
   def call
     greet
     pick_whiskies
+    laters
   end
   
   #greet user
@@ -187,16 +188,16 @@ class WhiskyPicker::CLI
         whisky = @whiskies[input.to_i-1]
 
         #have scraper scrape profile page for selected whisky
-        whisky_prof = WhiskyPicker::Whiskyscraper.scrape_profile_page(BASE_PATH + whisky.profile_url)
+        whisky = WhiskyPicker::Whiskyscraper.scrape_profile_page(BASE_PATH + whisky.profile_url)
 
         #display selected whisky profile info
-        puts "Name: " + "#{whisky_prof.name}".upcase
+        puts "Name: " + "#{whisky.name}".upcase
         puts ""
-        puts "Country: " + "#{whisky_prof.country}"
-        puts "Region & Type: " + "#{whisky_prof.region_type}"
-        puts "Proof: " + "#{whisky_prof.proof}"
-        puts "Customer rating: " + "#{whisky_prof.rating}"
-        puts "Description: " + "#{whisky_prof.description}"
+        puts "Country: " + "#{whisky.country}"
+        puts "Region & Type: " + "#{whisky.region_type}"
+        puts "Proof: " + "#{whisky.proof}"
+        puts "Customer rating: " + "#{whisky.rating}" + "/5 stars"
+        puts "Description: " + "#{whisky.description}"
         puts ""
         puts ""
         puts "Want to pick another one? Type list to start over or exit to leave."
