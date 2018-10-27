@@ -5,13 +5,12 @@ require_relative "whiskyscraper.rb"
 class WhiskyPicker::CLI
 
   #include base path to append urls of whisky pages
-  BASE_PATH="https://www.thewhiskyexchange.com"
+  BASE_PATH="https://www.thewhiskyexchange.com/"
   
   #welcome user to gem, pick a whisky and exit!
   def call
     greet
     pick_whiskies
-    laters
   end
   
   #greet user
@@ -23,7 +22,6 @@ class WhiskyPicker::CLI
   #list search options 
   def pick_whiskies
     country_select
-    menu
   end
   
   #list countries and prompt user for country selection
@@ -140,7 +138,7 @@ class WhiskyPicker::CLI
   #show list of American whiskies
   def american
     puts "Let's explore American whiskies"
-    #call method to list whiskies for this particular type
+   #call method to list whiskies for this particular type
     whisky_list('c/33/american-whiskey?filter=true&rfdata=~size.76#productlist-filter')
   end
   
@@ -152,7 +150,7 @@ class WhiskyPicker::CLI
   end
   
   #show list of Canadian whiskies
-  def candian
+  def canadian
     puts "Let's explore Canadian whiskies"
     #call method to list whiskies for this particular type
     whisky_list('c/34/canadian-whisky?filter=true&rfdata=~size.76#productlist-filter')
@@ -175,13 +173,14 @@ class WhiskyPicker::CLI
     @whiskies.each_with_index do |whisky, index|
       puts "#{index+1}. #{whisky.name}"
     end
+    menu
   end
 
   #display menu results with details about selected whisky
   def menu
     input = nil
     while input != 'exit'
-      puts "Please enter the number of the particular whisky you would like to see."
+      puts "Please enter the number of the particular whisky you would like."
       input = gets.strip.downcase
 
       if input.to_i > 0 && input.to_i <= @whiskies.size

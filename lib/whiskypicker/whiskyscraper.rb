@@ -6,12 +6,9 @@ class WhiskyPicker::Whiskyscraper
   attr_accessor :name, :profile_url, :country, :region_type, :proof, :rating, :description
   
   #scrape whisky type index page for name and url
-  def scrape_index_page
-    #profile_url = "https://www.thewhiskyexchange.com/c/33/american-whiskey?filter=true&rfdata=~size.76#productlist-filter"
+  def self.scrape_index_page(index_url)
     whiskies = []
-    doc = Nokogiri::html(open(index_url))
-    
-    binding pry
+    doc = Nokogiri::HTML(open(index_url))
     
     whisky_time = doc.css(".item")
     whisky_time.each do |whisky|
