@@ -1,4 +1,4 @@
 #require all lib files
-require_relative "./whisky_picker/version"
-require_relative "./whisky_picker/cli"
-require_relative "./whisky_picker/whisky"
+require_relative "./whiskypicker/version"
+require_relative "./whiskypicker/cli"
+require_relative "./whiskypicker/whiskyscraper"

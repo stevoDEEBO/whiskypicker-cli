@@ -1,5 +1,3 @@
-module Whiskypicker
-  module Cli
-    VERSION = "0.1.0"
-  end
+module WhiskyPicker
+  VERSION = "0.1.0"
 end

@@ -5,7 +5,7 @@ require "whiskypicker/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "whiskypicker-cli"
-  spec.version       = Whiskypicker::VERSION
+  spec.version       = WhiskyPicker::VERSION
   spec.authors       = ["'Stephen Telesmanic'"]
   spec.email         = ["'steve.telesmanic@gmail.com'"]
 

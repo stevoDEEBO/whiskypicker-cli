@@ -1,5 +1,5 @@
 require 'pry'
-require_relative "whisky.rb"
+require_relative "whiskyscraper.rb"
 
 #CLI Controller
 class WhiskyPicker::CLI
@@ -170,7 +170,7 @@ class WhiskyPicker::CLI
   #use each whisky hash key 'name'
   def whisky_list(whisky_url)
     #scrape and create whisky hashes for all selected whiskies using urls
-    @whiskies = WhiskyPicker:Whiskyscraper.scrape_index_page(BASE_PATH + whisky_url)
+    @whiskies = WhiskyPicker::Whiskyscraper.scrape_index_page(BASE_PATH + whisky_url)
     #display list of whiskies
     @whiskies.each_with_index do |whisky, index|
       puts "#{index+1}. #{whisky.name}"
@@ -220,3 +220,4 @@ class WhiskyPicker::CLI
     puts "Laters! Thanks for stopping by."
     exit
   end
+end
