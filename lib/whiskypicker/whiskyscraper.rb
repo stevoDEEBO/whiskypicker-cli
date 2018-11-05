@@ -24,14 +24,14 @@ class WhiskyPicker::Whiskyscraper
     
     profile = Nokogiri::HTML(open(profile_url))
     
-    whisky = profile.css("container")
+    whisky = profile.css(".container")
     
     my_whisky = self.new
-    my_whisky.name = whisky.css("name-container h1").text.strip
-    my_whisky.country = whisky.css("dl.meta").at('dt:contains("Country")').next_element.text.strip if whisky.css("dl.meta").at('dt:contains("Country")') != nil
-    my_whisky.region_type = whisky.css("name-container ul.properties li").text.strip
-    my_whisky.proof = whisky.css("name-container span.strength").text.strip.split(" / ").last
-    my_whisky.rating = whisky.css("rating-container span").text
+    my_whisky.name = whisky.css(".name-container h1").text.strip
+    my_whisky.country = whisky.css("dl.meta").at('dt:contains("Country")').next_element.text.strip #if whisky.css("dl.meta").at('dt:contains("Country")') != nil
+    my_whisky.region_type = whisky.css(".name-container ul.properties li").text.strip
+    my_whisky.proof = whisky.css(".name-container span.strength").text.strip.split(" / ").last
+    my_whisky.rating = whisky.css(".rating-container span").text
     my_whisky.description = whisky.css(".details-content-item").text.strip
     
     my_whisky
