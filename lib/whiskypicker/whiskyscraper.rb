@@ -32,7 +32,7 @@ class WhiskyPicker::Whiskyscraper
     my_whisky.region_type = whisky.css(".name-container ul.properties li").text.strip
     my_whisky.proof = whisky.css(".name-container span.strength").text.strip.split(" / ").last
     my_whisky.rating = whisky.css(".rating-container span").text
-    my_whisky.description = whisky.css(".details-content-item").text.strip
+    my_whisky.description = whisky.css("#prodDesc").text.strip
     
     my_whisky
   end
