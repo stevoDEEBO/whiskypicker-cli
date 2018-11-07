@@ -164,9 +164,8 @@ class WhiskyPicker::CLI
     whisky_list('c/305/rest-of-the-world-whisky?filter=true&rfdata=~size.76#productlist-filter')
   end
   
-  #display list of whiskies for selected country by using scraper whisky.rb to do this
-  #by creating array of scraped whiskies and hashes for each individual whisky_list and
-  #use each whisky hash key 'name'
+  #display list of whiskies for selected country by using scraper to do this
+  #by creating array of scraped whiskies and hashes for each individual whisky 
   def whisky_list(whisky_url)
     #scrape and create whisky hashes for all selected whiskies using urls
     @whiskies = WhiskyPicker::Whiskyscraper.scrape_index_page(BASE_PATH + whisky_url)
@@ -205,6 +204,10 @@ class WhiskyPicker::CLI
         input = gets.strip.downcase
         if input == "list"
           pick_whiskies
+        elsif input = "back"
+          @whiskies.each_with_index do |whisky, index|
+            puts "#{index+1}. #{whisky.name}"
+          end
         elsif input == "exit"
           laters
           exit
