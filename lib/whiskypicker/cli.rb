@@ -62,15 +62,14 @@ class WhiskyPicker::CLI
       when "6"
         other
         break
-      when "list"
+      when "start"
         country_select
         break
       when "exit"
         laters
-        break
+        exit
       else 
-        puts "Didn't quite catch that, please type number of desired country, type list or exit to leave."
-        break
+        puts "Didn't quite catch that, please type number of desired country, type start  or exit to leave."
       end
     end
   end
@@ -104,18 +103,17 @@ class WhiskyPicker::CLI
       when "4"
         scotch_grain
         break
-      when "list"
+      when "back"
         scotch
         break
-      when "back"
+      when "start"
         country_select
         break
       when "exit"
         laters
-        break
+        exit
       else
         puts "Didn't quite catch that, please enter number of desired type of Scotch, type list or exit to leave."
-        break
       end
     end
   end
@@ -192,6 +190,7 @@ class WhiskyPicker::CLI
     @whiskies.each_with_index do |whisky, index|
       puts "#{index+1}. #{whisky.name}"
     end
+ #   menu
   end
 
   #display menu results with details about selected whisky
@@ -217,18 +216,17 @@ class WhiskyPicker::CLI
         puts "Description: " + "#{whisky.description}".colorize(:light_magenta)
         puts ""
         puts ""
-        puts "Want to pick another one? Type list to start over or exit to leave."
+        puts "Want to pick another one? Type back to return to most recent list, start to start over or exit to leave."
 
         input = gets.strip.downcase
-        if input == "list"
+        if input == "start"
           pick_whiskies
+        elsif input == "exit"
+          laters
         elsif input = "back"
           @whiskies.each_with_index do |whisky, index|
             puts "#{index+1}. #{whisky.name}"
           end
-        elsif input == "exit"
-          laters
-          exit
         else
           puts "Didn't quite catch that, type list or exit to leave."
         end
