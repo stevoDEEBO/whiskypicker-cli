@@ -1,5 +1,6 @@
 require 'pry'
 require_relative "whiskyscraper.rb"
+require 'colorize'
 
 #CLI Controller
 class WhiskyPicker::CLI
@@ -11,6 +12,7 @@ class WhiskyPicker::CLI
   def call
     greet
     pick_whiskies
+    menu
     laters
   end
   
@@ -44,22 +46,31 @@ class WhiskyPicker::CLI
       case input
       when "1"
         scotch
+        break
       when "2"
         irish
+        break
       when "3"
         american
+        break
       when "4"
         japanese
+        break
       when "5"
         canadian
+        break
       when "6"
         other
+        break
       when "list"
         country_select
+        break
       when "exit"
         laters
+        break
       else 
         puts "Didn't quite catch that, please type number of desired country, type list or exit to leave."
+        break
       end
     end
   end
@@ -83,20 +94,28 @@ class WhiskyPicker::CLI
       case input
       when "1"
         scotch_single_malt
+        break
       when "2"
         scotch_blended_malt
+        break
       when "3"
         scotch_blended
+        break
       when "4"
         scotch_grain
+        break
       when "list"
         scotch
+        break
       when "back"
         country_select
+        break
       when "exit"
         laters
+        break
       else
         puts "Didn't quite catch that, please enter number of desired type of Scotch, type list or exit to leave."
+        break
       end
     end
   end
@@ -173,7 +192,6 @@ class WhiskyPicker::CLI
     @whiskies.each_with_index do |whisky, index|
       puts "#{index+1}. #{whisky.name}"
     end
-    menu
   end
 
   #display menu results with details about selected whisky
@@ -190,13 +208,13 @@ class WhiskyPicker::CLI
         whisky = WhiskyPicker::Whiskyscraper.scrape_profile_page(BASE_PATH + whisky.profile_url)
 
         #display selected whisky profile info
-        puts "Name: " + "#{whisky.name}".upcase
+        puts "Name: " + "#{whisky.name}".upcase.colorize(:color => :cyan)
         puts ""
-        puts "Country: " + "#{whisky.country}"
-        puts "Region & Type: " + "#{whisky.region_type}"
-        puts "Proof: " + "#{whisky.proof}"
-        puts "Customer rating: " + "#{whisky.rating}" + "/5 stars"
-        puts "Description: " + "#{whisky.description}"
+        puts "Country: " + "#{whisky.country}".colorize(:yellow)
+        puts "Region & Type: " + "#{whisky.region_type}".colorize(:yellow)
+        puts "Proof: " + "#{whisky.proof}".colorize(:green)
+        puts "Customer rating: " + ("#{whisky.rating}" + "/5 stars").colorize(:green)
+        puts "Description: " + "#{whisky.description}".colorize(:light_magenta)
         puts ""
         puts ""
         puts "Want to pick another one? Type list to start over or exit to leave."

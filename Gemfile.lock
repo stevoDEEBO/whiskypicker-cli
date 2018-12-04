@@ -2,12 +2,14 @@ PATH
   remote: .
   specs:
     whiskypicker-cli (0.1.0)
+      colorize
       nokogiri (~> 1.6, >= 1.6.8)
 
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.2)
+    colorize (0.8.1)
     method_source (0.9.0)
     mini_portile2 (2.3.0)
     nokogiri (1.8.5)
@@ -27,4 +29,4 @@ DEPENDENCIES
   whiskypicker-cli!
 
 BUNDLED WITH
-   1.16.6
+   1.17.1
