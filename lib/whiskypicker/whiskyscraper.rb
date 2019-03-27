@@ -28,10 +28,10 @@ class WhiskyPicker::Whiskyscraper
 
     my_whisky = self.new
     my_whisky.name = whisky.css(".name-container h1").text.strip
-    my_whisky.country = whisky.css("dl.meta").at('dt:contains("Country")').next_element.text.strip #if whisky.css("dl.meta").at('dt:contains("Country")') != nil
-    my_whisky.region_type = whisky.css(".name-container ul.properties li").first.text.strip
-    my_whisky.proof = whisky.css(".name-container span.strength").text.strip.split(" / ").last
-    my_whisky.rating = whisky.css(".rating-container span").text
+    my_whisky.country = whisky.css("dl.meta").at('dt:contains("Country")').next_element.text.strip if whisky.css("dl.meta").at('dt:contains("Country")') != nil
+    my_whisky.region_type = whisky.css(".name-container ul.properties li").first.text.strip if whisky.css(".name-container ul.properties li").first != nil
+    my_whisky.proof = whisky.css(".name-container span.strength").text.strip.split(" / ").last if whisky.css(".name-container span.strength").text != nil
+    my_whisky.rating = whisky.css(".rating-container span").text if whisky.css(".rating-container span").text != nil
     my_whisky.description = whisky.css("#prodDesc").text.strip
 
     my_whisky

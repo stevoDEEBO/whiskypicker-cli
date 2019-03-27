@@ -202,7 +202,7 @@ class WhiskyPicker::CLI
 
       if input.to_i > 0 && input.to_i <= @whiskies.size
         whisky = @whiskies[input.to_i-1]
-
+#binding.pry
         #have scraper scrape profile page for selected whisky
         whisky = WhiskyPicker::Whiskyscraper.scrape_profile_page(BASE_PATH + whisky.profile_url)
 
@@ -216,21 +216,26 @@ class WhiskyPicker::CLI
         puts "Description: " + "#{whisky.description}".colorize(:yellow)
         puts ""
         puts ""
-        puts "Want to pick another one? Type back to return to most recent list, start to start over or exit to leave."
 
-        input = gets.strip.downcase
-        if input == "start"
-          pick_whiskies
-        elsif input == "exit"
-          laters
-        elsif input == "back"
-          @whiskies.each_with_index do |whisky, index|
-            puts "#{index+1}. #{whisky.name}"
-          end
-        else
-          puts "Didn't quite catch that, type list or exit to leave."
-        end
+        back_start_exit
       end
+    end
+  end
+
+  def back_start_exit
+    puts "Want to pick another one? Type back to return to most recent list, start to start over or exit to leave."
+
+    input = gets.strip.downcase
+    if input == "start"
+      pick_whiskies
+    elsif input == "exit"
+      laters
+    elsif input == "back" || input == "list" || input == "yes" || input == "y"
+      @whiskies.each_with_index do |whisky, index|
+        puts "#{index+1}. #{whisky.name}"
+      end
+    else
+      back_start_exit
     end
   end
 
