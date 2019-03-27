@@ -212,7 +212,11 @@ class WhiskyPicker::CLI
         puts "Country: " + "#{whisky.country}".colorize(:light_blue)
         puts "Region & Type: " + "#{whisky.region_type}".colorize(:cyan)
         puts "Proof: " + "#{whisky.proof}".colorize(:green)
-        puts "Customer rating: " + ("#{whisky.rating}" + "/5 stars").colorize(:green)
+        if whisky.rating == ""
+          puts "Customer rating: " + ("unrated").colorize(:green)
+        else
+          puts "Customer rating: " + ("#{whisky.rating}" + "/5 stars").colorize(:green)
+        end
         puts "Description: " + "#{whisky.description}".colorize(:yellow)
         puts ""
         puts ""
