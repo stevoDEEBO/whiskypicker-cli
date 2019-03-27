@@ -7,7 +7,7 @@ class WhiskyPicker::CLI
 
   #include base path to append urls of whisky pages
   BASE_PATH="https://www.thewhiskyexchange.com/"
-  
+
   #welcome user to gem, pick a whisky and exit!
   def call
     greet
@@ -15,18 +15,18 @@ class WhiskyPicker::CLI
     menu
     laters
   end
-  
+
   #greet user
   def greet
     puts "Welcome to Whisky Picker...ready to pick yer whisky?"
     puts ""
   end
-  
-  #list search options 
+
+  #list search options
   def pick_whiskies
     country_select
   end
-  
+
   #list countries and prompt user for country selection
   def country_select
     puts "Which country would you like to explore?"
@@ -38,7 +38,7 @@ class WhiskyPicker::CLI
     5. Canada
     6. Other
     DOC
-    
+
     input = nil
     while input != "exit"
       puts "Please enter number of desired country"
@@ -68,7 +68,7 @@ class WhiskyPicker::CLI
       when "exit"
         laters
         exit
-      else 
+      else
         puts "Didn't quite catch that, please type number of desired country, type start  or exit to leave."
       end
     end
@@ -84,7 +84,7 @@ class WhiskyPicker::CLI
     3. Blended
     4. Grain
     DOC
-    
+
     #prompt user for desired type of scotch whisky selection
     input = nil
     while input != "exit"
@@ -117,56 +117,56 @@ class WhiskyPicker::CLI
       end
     end
   end
-  
+
   #show list of single malt Scotch whiskies
   def scotch_single_malt
     puts "Let's explore single malt Scotch whiskies"
     #call method to list whiskies for this particular type
     whisky_list('c/40/single-malt-scotch-whisky?filter=true&rfdata=~size.76#productlist-filter')
   end
-  
+
   #show list of blended malt Scotch whiskies
   def scotch_blended_malt
     puts "Let's explore blended malt Scotch whiskies"
     #call method to list whiskies for this particular type
     whisky_list('c/309/blended-malt-scotch-whisky?filter=true&rfdata=~size.76#productlist-filter')
   end
-  
+
   #show list of blended Scotch whiskies
   def scotch_blended
     puts "Let's explore blended Scotch whiskies"
     #call method to list whiskies for this particular type
     whisky_list('c/304/blended-scotch-whisky?filter=true&rfdata=~size.76#productlist-filter')
   end
-  
+
   #show list of grain Scotch whiskies
   def scotch_grain
     puts "Let's explore grain Scotch whiskies"
     #call method to list whiskies for this particular type
     whisky_list('c/310/grain-scotch-whisky?filter=true&rfdata=~size.76#productlist-filter')
   end
-  
+
   #show list of Irish whiskies
   def irish
     puts "Let's explore Irish whiskies"
     #call method to list whiskies for this particular type
     whisky_list('c/32/irish-whiskey?filter=true&rfdata=~size.76#productlist-filter')
   end
-  
+
   #show list of American whiskies
   def american
     puts "Let's explore American whiskies"
    #call method to list whiskies for this particular type
     whisky_list('c/33/american-whiskey?filter=true&rfdata=~size.76#productlist-filter')
   end
-  
+
   #show list of Japanese whiskies
   def japanese
     puts "Let's explore Japanese whiskies"
     #call method to list whiskies for this particular type
     whisky_list('c/35/japanese-whisky?filter=true&rfdata=~size.76#productlist-filter')
   end
-  
+
   #show list of Canadian whiskies
   def canadian
     puts "Let's explore Canadian whiskies"
@@ -180,9 +180,9 @@ class WhiskyPicker::CLI
     #call method to list whiskies for this particular type
     whisky_list('c/305/rest-of-the-world-whisky?filter=true&rfdata=~size.76#productlist-filter')
   end
-  
+
   #display list of whiskies for selected country by using scraper to do this
-  #by creating array of scraped whiskies and hashes for each individual whisky 
+  #by creating array of scraped whiskies and hashes for each individual whisky
   def whisky_list(whisky_url)
     #scrape and create whisky hashes for all selected whiskies using urls
     @whiskies = WhiskyPicker::Whiskyscraper.scrape_index_page(BASE_PATH + whisky_url)
@@ -207,13 +207,13 @@ class WhiskyPicker::CLI
         whisky = WhiskyPicker::Whiskyscraper.scrape_profile_page(BASE_PATH + whisky.profile_url)
 
         #display selected whisky profile info
-        puts "Name: " + "#{whisky.name}".upcase.colorize(:color => :cyan)
+        puts "Name: " + "#{whisky.name}".upcase.colorize(:color => :blue)
         puts ""
-        puts "Country: " + "#{whisky.country}".colorize(:yellow)
-        puts "Region & Type: " + "#{whisky.region_type}".colorize(:yellow)
+        puts "Country: " + "#{whisky.country}".colorize(:light_blue)
+        puts "Region & Type: " + "#{whisky.region_type}".colorize(:cyan)
         puts "Proof: " + "#{whisky.proof}".colorize(:green)
         puts "Customer rating: " + ("#{whisky.rating}" + "/5 stars").colorize(:green)
-        puts "Description: " + "#{whisky.description}".colorize(:light_magenta)
+        puts "Description: " + "#{whisky.description}".colorize(:yellow)
         puts ""
         puts ""
         puts "Want to pick another one? Type back to return to most recent list, start to start over or exit to leave."
@@ -223,7 +223,7 @@ class WhiskyPicker::CLI
           pick_whiskies
         elsif input == "exit"
           laters
-        elsif input = "back"
+        elsif input == "back"
           @whiskies.each_with_index do |whisky, index|
             puts "#{index+1}. #{whisky.name}"
           end
@@ -233,7 +233,7 @@ class WhiskyPicker::CLI
       end
     end
   end
-  
+
   #exit CLI
   def laters
     puts "Laters! Thanks for stopping by."
