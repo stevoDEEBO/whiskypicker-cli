@@ -221,25 +221,25 @@ class WhiskyPicker::CLI
         puts ""
         puts ""
 
-        back_start_exit
+        next_step
       end
     end
   end
 
-  def back_start_exit
+  def next_step
     puts "Want to pick another one? Type back to return to most recent list, start to start over or exit to leave."
 
     input = gets.strip.downcase
-    if input == "start"
+    if input == "start" || input == "restart" || input == "top"
       pick_whiskies
-    elsif input == "exit"
+    elsif input == "exit" || input == "bye"
       laters
     elsif input == "back" || input == "list" || input == "yes" || input == "y"
       @whiskies.each_with_index do |whisky, index|
         puts "#{index+1}. #{whisky.name}"
       end
     else
-      back_start_exit
+      next_step
     end
   end
 
